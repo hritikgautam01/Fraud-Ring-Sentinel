@@ -1,0 +1,95 @@
+{
+  "case_id": "CASE_TXN_V3_009900",
+  "timestamp": "2026-09-05T13:49:47Z",
+  "decision": {
+    "risk_score": 0.8123,
+    "risk_level": "CRITICAL",
+    "action": "INVESTIGATE",
+    "threshold_applied": 0.45
+  },
+  "transaction_summary": {
+    "target_transaction_id": "TXN_V3_009900",
+    "target_user_id": "U_DIST_027",
+    "amount": 85.63,
+    "timestamp": "2026-09-05T13:49:47Z",
+    "total_transactions_in_cluster": 125,
+    "connected_users_count": 29,
+    "connected_devices_count": 30,
+    "connected_ips_count": 4,
+    "connected_cards_count": 32,
+    "connected_merchants_count": 1
+  },
+  "ml_evidence": {
+    "ml_model_name": "RandomForestClassifier_v1",
+    "predicted_probability": 0.95,
+    "high_risk_flag": true
+  },
+  "graph_evidence": {
+    "users_count": 29,
+    "devices_count": 30,
+    "ips_count": 4,
+    "cards_count": 32,
+    "merchants_count": 1,
+    "user_to_device_ratio": 0.97,
+    "user_to_card_ratio": 0.91,
+    "user_to_ip_ratio": 7.25,
+    "merchant_concentration": 1.0,
+    "top_merchant_id": "M_TARGET_HIGHVAL_99",
+    "is_shared_infrastructure": true
+  },
+  "behavioral_evidence": {
+    "account_age_days": 15,
+    "transactions_last_hour": 3,
+    "transactions_last_day": 8,
+    "failed_transactions": 0
+  },
+  "benign_evidence": {
+    "is_benign_pattern_detected": false,
+    "legitimate_users_on_shared_infrastructure": 0,
+    "benign_signals": [
+      "No benign network patterns identified"
+    ]
+  },
+  "evidence_items": [
+    {
+      "category": "ML",
+      "signal": "ml_anomaly_probability",
+      "value": 0.95,
+      "severity": "HIGH",
+      "description": "Transaction ML baseline predicted anomaly probability: 95.0%",
+      "source": "random_forest_baseline"
+    },
+    {
+      "category": "GRAPH",
+      "signal": "shared_ip_density",
+      "value": 7.25,
+      "severity": "MEDIUM",
+      "description": "29 users connected via 4 shared IP address(es) (7.2 users/IP)",
+      "source": "graph_cluster_analyzer"
+    },
+    {
+      "category": "GRAPH",
+      "signal": "merchant_target_concentration",
+      "value": 1.0,
+      "severity": "HIGH",
+      "description": "100.0% of cluster transactions target merchant M_TARGET_HIGHVAL_99",
+      "source": "graph_cluster_analyzer"
+    },
+    {
+      "category": "BEHAVIORAL",
+      "signal": "transaction_velocity",
+      "value": 3,
+      "severity": "MEDIUM",
+      "description": "Transaction velocity: 3 txns/hr, 8 txns/day",
+      "source": "behavioral_analyzer"
+    },
+    {
+      "category": "BEHAVIORAL",
+      "signal": "account_age",
+      "value": 15,
+      "severity": "LOW",
+      "description": "Account age: 15 day(s)",
+      "source": "behavioral_analyzer"
+    }
+  ]
+}
