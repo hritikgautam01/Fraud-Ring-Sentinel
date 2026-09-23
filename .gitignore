@@ -1,0 +1,15 @@
+# Environment Variables & Secrets
+.env
+.env.local
+*.env
+
+# Python Cache & Artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.joblib
+
+# Node & Frontend
+node_modules/
+dist/
+.DS_Store

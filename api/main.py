@@ -279,3 +279,11 @@ def get_case_subgraph(case_id: str):
             "notice": "Shared infrastructure indicates topological relationship, not confirmed fraud."
         }
     }
+
+
+# Mount built React frontend if available (for fullstack container deployments like Hugging Face Spaces)
+from fastapi.staticfiles import StaticFiles
+frontend_dist = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "frontend", "dist"))
+if os.path.exists(frontend_dist):
+    app.mount("/", StaticFiles(directory=frontend_dist, html=True), name="frontend")
+
